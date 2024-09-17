@@ -4,3 +4,6 @@ payload:
   - DOMAIN-SUFFIX,cinefiles.info
   - DOMAIN-SUFFIX,m-team.io
   - DOMAIN-SUFFIX,m-team.cc
+  - DOMAIN-SUFFIX,tailscale.com
+  - DOMAIN-SUFFIX,tailscale.io
+  
