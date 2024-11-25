@@ -7,5 +7,6 @@ payload:
   - DOMAIN-SUFFIX,caihc.site
   - DOMAIN-SUFFIX,caihc.top
   - DOMAIN-SUFFIX,test-ipv6.com
+  - DOMAIN-SUFFIX,tailscale.com
   
   
