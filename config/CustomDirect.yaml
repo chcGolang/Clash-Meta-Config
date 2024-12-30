@@ -1,6 +1,6 @@
 payload:
   # 自定义直连
-  - DOMAIN-SUFFIX,audiences.me
+  - DOMAIN-SUFFIX,t.audiences.me
   - DOMAIN-SUFFIX,cinefiles.info
   - DOMAIN-SUFFIX,m-team.io
   - DOMAIN-SUFFIX,m-team.cc
