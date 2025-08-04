@@ -1,3 +1,4 @@
 payload:
   # 自定义代理
   - DOMAIN-SUFFIX,v2rayssr.com
+  - DOMAIN-SUFFIX,alibabacloud.com
