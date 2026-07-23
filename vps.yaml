@@ -1,0 +1,485 @@
+port: 7890
+socks-port: 7891
+allow-lan: true
+mode: Rule
+log-level: info
+external-controller: :9090
+proxy-providers:
+  VPS:
+    type: http
+    path: ./chc/providers/vps.yaml
+    url: http://192.168.43.68:35334/clash/proxy-providers.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1800
+
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - DIRECT
+  - name: 🚀 手动切换
+    type: select
+    use:
+      - VPS
+  - name: ♻️ 自动选择
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    use:
+      - VPS
+  - name: CN直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: GW代理
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 📲 电报消息
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 💬 OpenAi
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 📹 油管视频
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 🎥 奈飞视频
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 📺 巴哈姆特
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 📺 哔哩哔哩
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🌍 国外媒体
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: 🌏 国内媒体
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 📢 谷歌FCM
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+  - name: Ⓜ️ 微软Bing
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: Ⓜ️ 微软云盘
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: Ⓜ️ 微软服务
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🍎 苹果服务
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🎮 游戏平台
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🎶 网易音乐
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🎯 全球直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+  - name: 🛑 广告拦截
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🍃 应用净化
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+  - name: 🐟 漏网之鱼
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT
+    
+rule-providers:
+  CustomDirect:
+    type: http
+    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomDirect.yaml
+    path: ./chc/CustomDirect.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  CustomProxy:
+    type: http
+    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomProxy.yaml
+    path: ./chc/CustomProxy.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  LocalAreaNetwork:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml
+    path: ./chc/LocalAreaNetwork.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  AWAvenueAds:
+    type: http
+    behavior: domain
+    format: yaml
+    path: ./chc/AWAvenue-Ads-Rule-Clash.yaml
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    interval: 86400
+
+  UnBan:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
+    path: ./chc/UnBan.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  BanAD:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
+    path: ./chc/BanAD.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  BanProgramAD:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
+    path: ./chc/BanProgramAD.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  GoogleFCM:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml
+    path: ./chc/GoogleFCM.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  GoogleCN:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml
+    path: ./chc/GoogleCN.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  SteamCN:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml
+    path: ./chc/SteamCN.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Bing:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bing.yaml
+    path: ./chc/Bing.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  OneDrive:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml
+    path: ./chc/OneDrive.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Microsoft:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
+    path: ./chc/Microsoft.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Apple:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Apple.yaml
+    path: ./chc/Apple.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Telegram:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml
+    path: ./chc/Telegram.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  OpenAi:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OpenAi.yaml
+    path: ./chc/OpenAi.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  NetEaseMusic:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/NetEaseMusic.yaml
+    path: ./chc/NetEaseMusic.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  Epic:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml
+    path: ./chc/Epic.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Origin:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Origin.yaml
+    path: ./chc/Origin.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Sony:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml
+    path: ./chc/Sony.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Steam:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml
+    path: ./chc/Steam.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Nintendo:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Nintendo.yaml
+    path: ./chc/Nintendo.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  YouTube:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/YouTube.yaml
+    path: ./chc/YouTube.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Netflix:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml
+    path: ./chc/Netflix.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  Bahamut:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bahamut.yaml
+    path: ./chc/Bahamut.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  BilibiliHMT:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml
+    path: ./chc/BilibiliHMT.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Bilibili:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bilibili.yaml
+    path: ./chc/Bilibili.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  ChinaMedia:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml
+    path: ./chc/ChinaMedia.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  ProxyMedia:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
+    path: ./chc/ProxyMedia.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  ProxyGFWlist:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
+    path: ./chc/ProxyGFWlist.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  ChinaIp:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaIp.yaml
+    path: ./chc/ChinaIp.yaml
+    behavior: ipcidr
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  ChinaDomain:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml
+    path: ./chc/ChinaDomain.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  ChinaCompanyIp:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaCompanyIp.yaml
+    path: ./chc/ChinaCompanyIp.yaml
+    behavior: ipcidr
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+  
+  Download:
+    type: http
+    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Download.yaml
+    path: ./chc/Download.yaml
+    behavior: classical
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+rules:
+  - RULE-SET,CustomDirect,CN直连
+  - RULE-SET,CustomProxy,GW代理
+  - RULE-SET,LocalAreaNetwork,🎯 全球直连
+  - RULE-SET,AWAvenueAds,🛑 广告拦截
+  - RULE-SET,UnBan,🎯 全球直连
+  - RULE-SET,BanAD,🛑 广告拦截
+  - RULE-SET,BanProgramAD,🍃 应用净化
+  - RULE-SET,GoogleFCM,📢 谷歌FCM
+  - RULE-SET,GoogleCN,🎯 全球直连
+  - RULE-SET,SteamCN,🎯 全球直连
+  - RULE-SET,Bing,Ⓜ️ 微软Bing
+  - RULE-SET,OneDrive,Ⓜ️ 微软云盘
+  - RULE-SET,Microsoft,Ⓜ️ 微软服务
+  - RULE-SET,Apple,🍎 苹果服务
+  - RULE-SET,Telegram,📲 电报消息
+  - RULE-SET,OpenAi,💬 OpenAi
+  - RULE-SET,NetEaseMusic,🎶 网易音乐
+  - RULE-SET,Epic,🎮 游戏平台
+  - RULE-SET,Origin,🎮 游戏平台
+  - RULE-SET,Sony,🎮 游戏平台
+  - RULE-SET,Steam,🎮 游戏平台
+  - RULE-SET,Nintendo,🎮 游戏平台
+  - RULE-SET,YouTube,📹 油管视频
+  - RULE-SET,Netflix,🎥 奈飞视频
+  - RULE-SET,Bahamut,📺 巴哈姆特
+  - RULE-SET,BilibiliHMT,📺 哔哩哔哩
+  - RULE-SET,Bilibili,📺 哔哩哔哩
+  - RULE-SET,ChinaMedia,🌏 国内媒体
+  - RULE-SET,ProxyMedia,🌍 国外媒体
+  - RULE-SET,ProxyGFWlist,🚀 节点选择
+  - RULE-SET,ChinaIp,🎯 全球直连
+  - RULE-SET,ChinaDomain,🎯 全球直连
+  - RULE-SET,ChinaCompanyIp,🎯 全球直连
+  - RULE-SET,Download,🎯 全球直连
+  - GEOIP,LAN,🎯 全球直连
+  - GEOIP,CN,🎯 全球直连
+  - MATCH,🐟 漏网之鱼
