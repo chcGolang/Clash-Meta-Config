@@ -13,7 +13,7 @@ env:
 
 jobs:
   update:
-    runs-on: self-hosted   # 改成自建 runner，绕开 Cloudflare 对 GitHub 云端 IP 的封锁
+    runs-on: ubuntu-latest   # 如果走 Cloudflare Worker 代理这条路，改回云端 Runner，不用自建
     steps:
       - uses: actions/checkout@v4
         with:
