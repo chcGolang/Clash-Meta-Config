@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}     # 也支持手动点击运行
 
 env:
-  TARGET_BRANCH: test/acl4ssr-auto-update   # ← 想操作/提交到哪个分支，改这一行就行
+  TARGET_BRANCH: main   # ← 想操作/提交到哪个分支，改这一行就行
 
 jobs:
   update:
