@@ -48,7 +48,16 @@ def fetch_subconverter_yaml() -> dict:
         "scv": "true",
         "fdn": "false",
     }
-    resp = requests.get(f"{SUBCONVERTER_HOST}/sub", params=params, timeout=30)
+
+    headers = {
+        # 伪装成正常浏览器请求，规避部分后端对默认 UA（python-requests/x.x）的拦截
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+            "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+        ),
+        "Accept": "*/*",
+    }
+    resp = requests.get(f"{SUBCONVERTER_HOST}/sub", params=params, headers=headers, timeout=30)
     resp.raise_for_status()
     return yaml.safe_load(resp.text)
 
