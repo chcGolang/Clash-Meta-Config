@@ -138,12 +138,39 @@ def build_final_config():
         print(remote, file=sys.stderr)
         sys.exit(1)
 
-    # 规范化 remote rule-providers 的 path 文件名
-    for name, provider in remote.get("rule-providers", {}).items():
+    # 规范化 remote rule-providers 的键名、path 文件名，以及 rules 中的引用
+    # 例如将 "Apple (IP-CIDR)" 转换为 "Apple_IP-CIDR"
+    new_rule_providers = {}
+    old_to_new_names = {}
+    for old_name, provider in remote.get("rule-providers", {}).items():
+        if "(" in old_name and old_name.endswith(")"):
+            parts = old_name.split("(")
+            base = parts[0].strip().replace(" ", "_")
+            behavior_part = parts[1].strip(")")
+            new_name = f"{base}_{behavior_part}"
+        else:
+            new_name = old_name.replace(" ", "_")
+            
+        old_to_new_names[old_name] = new_name
+        
         if "path" in provider:
-            clean_name = name.split("(")[0].strip().replace(" ", "_")
-            behavior = provider.get("behavior", "unknown")
-            provider["path"] = f"./providers/{clean_name}_{behavior}.yaml"
+            provider["path"] = f"./providers/{new_name}.yaml"
+        new_rule_providers[new_name] = provider
+        
+    remote["rule-providers"] = new_rule_providers
+
+    # 同步更新 rules 里的 RULE-SET 引用名称
+    new_rules = []
+    for line in remote.get("rules", []):
+        if line.startswith("RULE-SET,"):
+            parts = line.split(",")
+            if len(parts) >= 2:
+                old_rule_name = parts[1]
+                if old_rule_name in old_to_new_names:
+                    parts[1] = old_to_new_names[old_rule_name]
+                    line = ",".join(parts)
+        new_rules.append(line)
+    remote["rules"] = new_rules
 
     with open(BASE_TEMPLATE, "r", encoding="utf-8") as f:
         base_text = f.read()
