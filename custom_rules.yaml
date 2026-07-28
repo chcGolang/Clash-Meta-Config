@@ -1,0 +1,37 @@
+# 用户自定义规则，不属于 ACL4SSR 官方模板
+# update_config.py 每次运行只会更新 ACL4SSR 那部分 rule-providers/rules，
+# 这个文件里的内容永远手动维护，脚本只负责把它拼接到最终结果的最前面。
+
+rule-providers:
+  CustomDirect:
+    type: http
+    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomDirect.yaml
+    path: ./chc/CustomDirect.yaml
+    behavior: domain
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  CustomProxy:
+    type: http
+    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomProxy.yaml
+    path: ./chc/CustomProxy.yaml
+    behavior: domain
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 86400
+
+  # 这个也不是 ACL4SSR 官方模板的东西，是单独引入的第三方去广告规则，
+  # 同样不能靠 subconverter 同步，一起放这里手动维护
+  AWAvenueAds:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./chc/AWAvenue-Ads-Rule-Clash.yaml
+    url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
+    interval: 86400
+
+rules:
+  - RULE-SET,CustomDirect,CN直连
+  - RULE-SET,CustomProxy,GW代理
+  - RULE-SET,AWAvenueAds,🛑 广告拦截
