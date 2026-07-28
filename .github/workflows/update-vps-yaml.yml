@@ -20,12 +20,6 @@ jobs:
         with:
           python-version: '3.x'
           
-      - name: Test subconverter
-        run: |
-          curl -v \
-          -A "Mozilla/5.0" \
-          "https://api.wcc.best/sub?target=clash&url=ss%3A%2F%2FYWVzLTEyOC1nY206dGVzdDEyM0AxMjcuMC4wLjE6ODM4OA%3D%3D"
-
       - name: 安装依赖
         run: pip install requests pyyaml
 
