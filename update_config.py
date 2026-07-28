@@ -145,11 +145,11 @@ def build_final_config():
     for old_name, provider in remote.get("rule-providers", {}).items():
         if "(" in old_name and old_name.endswith(")"):
             parts = old_name.split("(")
-            base = parts[0].strip().replace(" ", "_")
+            base = parts[0].strip().replace(" ", "")
             behavior_part = parts[1].strip(")")
-            new_name = f"{base}_{behavior_part}"
+            new_name = f"{base}{behavior_part}"
         else:
-            new_name = old_name.replace(" ", "_")
+            new_name = old_name.replace(" ", "")
             
         old_to_new_names[old_name] = new_name
         
