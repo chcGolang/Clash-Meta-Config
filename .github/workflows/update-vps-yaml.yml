@@ -5,12 +5,15 @@ on:
     - cron: '0 20 * * *'   # 每天 UTC 20:00（北京时间凌晨 4 点）跑一次，可自行调整
   workflow_dispatch: {}     # 也支持手动点击运行
 
+permissions:
+  contents: write   # 明确给 GITHUB_TOKEN 写权限，否则 git push 会被 403 拒绝
+
 env:
   TARGET_BRANCH: main   # ← 想操作/提交到哪个分支，改这一行就行
 
 jobs:
   update:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted   # 改成自建 runner，绕开 Cloudflare 对 GitHub 云端 IP 的封锁
     steps:
       - uses: actions/checkout@v4
         with:
@@ -19,7 +22,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.x'
-          
+
       - name: 安装依赖
         run: pip install requests pyyaml
 
