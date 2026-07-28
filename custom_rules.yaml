@@ -34,4 +34,4 @@ rule-providers:
 rules:
   - RULE-SET,CustomDirect,CN直连
   - RULE-SET,CustomProxy,GW代理
-  - RULE-SET,AWAvenueAds,🛑 广告拦截
+  - RULE-SET,AWAvenueAds,🛑 全球拦截

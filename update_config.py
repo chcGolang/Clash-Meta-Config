@@ -75,32 +75,54 @@ def extract_group_names(rules: list) -> list:
     return list(seen.keys())
 
 
-def ensure_groups_exist(base_text: str, base_dict: dict, referenced_groups: list) -> str:
+def ensure_groups_exist(base_dict: dict, referenced_groups: list, remote_groups: list) -> list:
     """
-    检查 rules 里引用的策略组，是不是都在 base_template 的 proxy-groups 里定义过。
-    没有的话（比如 ACL4SSR 官方模板改了策略组名字），自动追加一个默认策略组，
-    保证生成的 vps.yaml 始终是能被 Clash 正常加载的合法配置，而不是静默出错。
+    检查 rules 里引用的策略组，如果在 base_dict 中不存在，
+    则优先从 subconverter (remote) 返回的配置中提取其原生的 proxies 列表（比如 REJECT/DIRECT），
+    同时过滤掉不存在的节点以防报错。如果没有匹配，再用兜底。
     """
-    known = {g["name"] for g in base_dict.get("proxy-groups", [])}
+    proxy_groups = base_dict.get("proxy-groups", [])
+    known = {g["name"] for g in proxy_groups}
     known |= {"DIRECT", "REJECT", "PASS"}
     missing = sorted(set(referenced_groups) - known)
 
     if not missing:
-        return base_text
+        return proxy_groups
 
-    print(f"!! 警告：检测到 {len(missing)} 个 rules 引用的策略组在 base_template.yaml 里不存在，"
-          f"已自动补上默认分组，建议手动检查调整：{missing}", file=sys.stderr)
+    print(f"!! 警告：检测到 {len(missing)} 个 rules 引用的策略组在 base_template.yaml 里不存在，", file=sys.stderr)
+    print(f"正在从 sub 官方配置中智能提取其代理列表...", file=sys.stderr)
 
-    extra_blocks = []
+    # 有效的 proxies 集合：包括基础组和内置直连等
+    valid_proxies = {"DIRECT", "REJECT", "PASS"}
+    for g in proxy_groups:
+        valid_proxies.add(g["name"])
+
+    remote_group_map = {g["name"]: g for g in remote_groups}
+
     for name in missing:
-        extra_blocks.append(
-            f"  - name: {name}\n"
-            f"    type: select\n"
-            f"    proxies:\n"
-            f"      - 🚀 节点选择\n"
-            f"      - DIRECT\n"
-        )
-    return base_text.rstrip() + "\n\n" + "\n".join(extra_blocks) + "\n"
+        group = remote_group_map.get(name)
+        if group and "proxies" in group:
+            # 过滤掉不存在的节点（如 "🇺🇲 美国节点"）
+            filtered = [p for p in group["proxies"] if p in valid_proxies]
+            if filtered:
+                proxy_groups.append({
+                    "name": name,
+                    "type": group.get("type", "select"),
+                    "proxies": filtered
+                })
+                valid_proxies.add(name)
+                continue
+        
+        # 兜底
+        proxy_groups.append({
+            "name": name,
+            "type": "select",
+            "proxies": ["🚀 节点选择", "DIRECT"]
+        })
+        valid_proxies.add(name)
+
+    return proxy_groups
+
 
 
 def reorder_proxy_groups(proxy_groups: list, ordered_names: list) -> list:
@@ -137,6 +159,16 @@ def build_final_config():
         print("!! subconverter 返回内容里没有 rule-providers/rules，可能是 expand 参数没生效，或者后端拒绝了请求", file=sys.stderr)
         print(remote, file=sys.stderr)
         sys.exit(1)
+
+    # 偷梁换柱：将官方的 "🛑 广告拦截" 强行改名为 "🛑 全球拦截"
+    for g in remote.get("proxy-groups", []):
+        if g["name"] == "🛑 广告拦截":
+            g["name"] = "🛑 全球拦截"
+            
+    new_remote_rules_init = []
+    for line in remote.get("rules", []):
+        new_remote_rules_init.append(line.replace("🛑 广告拦截", "🛑 全球拦截"))
+    remote["rules"] = new_remote_rules_init
 
     # 规范化 remote rule-providers 的键名、path 文件名，以及 rules 中的引用
     # 例如将 "Apple (IP-CIDR)" 转换为 "Apple_IP-CIDR"
@@ -187,9 +219,14 @@ def build_final_config():
 
     # 自愈校验：rules 里引用的策略组，必须都在 base_template 的 proxy-groups 里存在，
     # 否则自动补上默认分组，避免 ACL4SSR 改了策略组名字之后生成出损坏的配置。
+    # 1. 提前记录不需要自动注入 sub 节点的黑名单
+    base_existing_groups = {g["name"] for g in base_dict.get("proxy-groups", [])}
+    custom_rules_groups = set(extract_group_names(custom.get("rules", [])))
+    excluded_groups = base_existing_groups | custom_rules_groups
+
     ordered_group_names = extract_group_names(merged_rules)
-    base_text = ensure_groups_exist(base_text, base_dict, ordered_group_names)
-    base_dict = yaml.safe_load(base_text)
+    base_dict["proxy-groups"] = ensure_groups_exist(base_dict, ordered_group_names, remote.get("proxy-groups", []))
+
 
     # 按 rules 中策略组首次出现顺序重排 proxy-groups
     base_dict["proxy-groups"] = reorder_proxy_groups(
@@ -197,11 +234,13 @@ def build_final_config():
     )
 
     # 把 base 部分（含重排后的 proxy-groups）和 rule-providers / rules 分别序列化再拼接
+    dump_dict = {
+        "proxy-providers": base_dict.get("proxy-providers", {}),
+        "proxy-groups": base_dict.get("proxy-groups", []),
+    }
+
     base_tail = yaml.dump(
-        {
-            "proxy-providers": base_dict["proxy-providers"],
-            "proxy-groups": base_dict["proxy-groups"],
-        },
+        dump_dict,
         allow_unicode=True,
         sort_keys=False,
         default_flow_style=False,
