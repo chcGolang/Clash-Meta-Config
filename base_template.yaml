@@ -1,0 +1,43 @@
+proxy-providers:
+  VPS:
+    type: http
+    path: ./chc/providers/vps.yaml
+    url: http://192.168.43.68:35334/clash/proxy-providers.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1800
+
+proxy-groups:
+  - name: 🚀 节点选择
+    type: select
+    proxies:
+      - ♻️ 自动选择
+      - 🚀 手动切换
+      - DIRECT
+
+  - name: 🚀 手动切换
+    type: select
+    use:
+      - VPS
+
+  - name: ♻️ 自动选择
+    type: url-test
+    url: https://www.gstatic.com/generate_204
+    interval: 300
+    tolerance: 50
+    use:
+      - VPS
+
+  - name: CN直连
+    type: select
+    proxies:
+      - DIRECT
+      - 🚀 节点选择
+
+  - name: GW代理
+    type: select
+    proxies:
+      - 🚀 节点选择
+      - DIRECT

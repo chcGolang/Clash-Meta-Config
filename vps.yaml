@@ -1,9 +1,5 @@
-port: 7890
-socks-port: 7891
-allow-lan: true
-mode: Rule
-log-level: info
-external-controller: :9090
+
+
 proxy-providers:
   VPS:
     type: http
@@ -14,472 +10,564 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 1800
-
 proxy-groups:
-  - name: 🚀 节点选择
-    type: select
-    proxies:
-      - ♻️ 自动选择
-      - 🚀 手动切换
-      - DIRECT
-  - name: 🚀 手动切换
-    type: select
-    use:
-      - VPS
-  - name: ♻️ 自动选择
-    type: url-test
-    url: https://www.gstatic.com/generate_204
-    interval: 300
-    tolerance: 50
-    use:
-      - VPS
-  - name: CN直连
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: GW代理
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 📲 电报消息
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 💬 OpenAi
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 📹 油管视频
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 🎥 奈飞视频
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 📺 巴哈姆特
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 📺 哔哩哔哩
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🌍 国外媒体
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: 🌏 国内媒体
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 📢 谷歌FCM
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-  - name: Ⓜ️ 微软Bing
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: Ⓜ️ 微软云盘
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: Ⓜ️ 微软服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🍎 苹果服务
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🎮 游戏平台
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🎶 网易音乐
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🎯 全球直连
-    type: select
-    proxies:
-      - DIRECT
-      - 🚀 节点选择
-  - name: 🛑 广告拦截
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 🍃 应用净化
-    type: select
-    proxies:
-      - REJECT
-      - DIRECT
-  - name: 🐟 漏网之鱼
-    type: select
-    proxies:
-      - 🚀 节点选择
-      - DIRECT
-    
+- name: 🚀 节点选择
+  type: select
+  proxies:
+  - ♻️ 自动选择
+  - 🚀 手动切换
+  - DIRECT
+- name: ♻️ 自动选择
+  type: url-test
+  url: https://www.gstatic.com/generate_204
+  interval: 300
+  tolerance: 50
+  use:
+  - VPS
+- name: 🚀 手动切换
+  type: select
+  use:
+  - VPS
+- name: CN直连
+  type: select
+  proxies:
+  - DIRECT
+  - 🚀 节点选择
+- name: GW代理
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🛑 广告拦截
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🎯 全球直连
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🍃 应用净化
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 📢 谷歌FCM
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: Ⓜ️ 微软Bing
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: Ⓜ️ 微软云盘
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: Ⓜ️ 微软服务
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🍎 苹果服务
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 📲 电报消息
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 💬 Ai平台
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🎶 网易音乐
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🎮 游戏平台
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 📹 油管视频
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🎥 奈飞视频
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 📺 巴哈姆特
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 📺 哔哩哔哩
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🌏 国内媒体
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🌍 国外媒体
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+- name: 🐟 漏网之鱼
+  type: select
+  proxies:
+  - 🚀 节点选择
+  - DIRECT
+
 rule-providers:
   CustomDirect:
     type: http
     url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomDirect.yaml
     path: ./chc/CustomDirect.yaml
-    behavior: classical
+    behavior: domain
     format: yaml
     proxy: 🚀 节点选择
     interval: 86400
-
   CustomProxy:
     type: http
     url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomProxy.yaml
     path: ./chc/CustomProxy.yaml
-    behavior: classical
+    behavior: domain
     format: yaml
     proxy: 🚀 节点选择
     interval: 86400
-
-  LocalAreaNetwork:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/LocalAreaNetwork.yaml
-    path: ./chc/LocalAreaNetwork.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
   AWAvenueAds:
     type: http
-    behavior: domain
+    behavior: classical
     format: yaml
     path: ./chc/AWAvenue-Ads-Rule-Clash.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
     interval: 86400
-
-  UnBan:
+  LocalAreaNetwork (Domain):
     type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/UnBan.yaml
-    path: ./chc/UnBan.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvTG9jYWxBcmVhTmV0d29yay5saXN0
+    path: ./providers/LocalAreaNetwork_domain.yaml
     interval: 86400
-
-  BanAD:
+  LocalAreaNetwork (IP-CIDR):
     type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml
-    path: ./chc/BanAD.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
-  BanProgramAD:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanProgramAD.yaml
-    path: ./chc/BanProgramAD.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  GoogleFCM:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleFCM.yaml
-    path: ./chc/GoogleFCM.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  GoogleCN:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/GoogleCN.yaml
-    path: ./chc/GoogleCN.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  SteamCN:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/SteamCN.yaml
-    path: ./chc/SteamCN.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Bing:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bing.yaml
-    path: ./chc/Bing.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
-  OneDrive:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OneDrive.yaml
-    path: ./chc/OneDrive.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Microsoft:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Microsoft.yaml
-    path: ./chc/Microsoft.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Apple:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Apple.yaml
-    path: ./chc/Apple.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Telegram:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Telegram.yaml
-    path: ./chc/Telegram.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  OpenAi:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/OpenAi.yaml
-    path: ./chc/OpenAi.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  NetEaseMusic:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/NetEaseMusic.yaml
-    path: ./chc/NetEaseMusic.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
-  Epic:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Epic.yaml
-    path: ./chc/Epic.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Origin:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Origin.yaml
-    path: ./chc/Origin.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Sony:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Sony.yaml
-    path: ./chc/Sony.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Steam:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Steam.yaml
-    path: ./chc/Steam.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Nintendo:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Nintendo.yaml
-    path: ./chc/Nintendo.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
-  YouTube:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/YouTube.yaml
-    path: ./chc/YouTube.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Netflix:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Netflix.yaml
-    path: ./chc/Netflix.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
-  Bahamut:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bahamut.yaml
-    path: ./chc/Bahamut.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-
-  BilibiliHMT:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/BilibiliHMT.yaml
-    path: ./chc/BilibiliHMT.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  Bilibili:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Ruleset/Bilibili.yaml
-    path: ./chc/Bilibili.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  ChinaMedia:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaMedia.yaml
-    path: ./chc/ChinaMedia.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  ProxyMedia:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyMedia.yaml
-    path: ./chc/ProxyMedia.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  ProxyGFWlist:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ProxyGFWlist.yaml
-    path: ./chc/ProxyGFWlist.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 86400
-  
-  ChinaIp:
-    type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaIp.yaml
-    path: ./chc/ChinaIp.yaml
     behavior: ipcidr
-    format: yaml
-    proxy: 🚀 节点选择
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvTG9jYWxBcmVhTmV0d29yay5saXN0
+    path: ./providers/LocalAreaNetwork_ipcidr.yaml
     interval: 86400
-
-  ChinaDomain:
+  UnBan (Domain):
     type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaDomain.yaml
-    path: ./chc/ChinaDomain.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvVW5CYW4ubGlzdA
+    path: ./providers/UnBan_domain.yaml
     interval: 86400
-  
-  ChinaCompanyIp:
+  BanAD (Domain):
     type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/ChinaCompanyIp.yaml
-    path: ./chc/ChinaCompanyIp.yaml
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQmFuQUQubGlzdA
+    path: ./providers/BanAD_domain.yaml
+    interval: 86400
+  BanProgramAD (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQmFuUHJvZ3JhbUFELmxpc3Q
+    path: ./providers/BanProgramAD_domain.yaml
+    interval: 86400
+  BanProgramAD (IP-CIDR):
+    type: http
     behavior: ipcidr
-    format: yaml
-    proxy: 🚀 节点选择
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQmFuUHJvZ3JhbUFELmxpc3Q
+    path: ./providers/BanProgramAD_ipcidr.yaml
     interval: 86400
-  
-  Download:
+  GoogleFCM (Domain):
     type: http
-    url: https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/Download.yaml
-    path: ./chc/Download.yaml
-    behavior: classical
-    format: yaml
-    proxy: 🚀 节点选择
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9Hb29nbGVGQ00ubGlzdA
+    path: ./providers/GoogleFCM_domain.yaml
     interval: 86400
-
+  GoogleFCM (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9Hb29nbGVGQ00ubGlzdA
+    path: ./providers/GoogleFCM_ipcidr.yaml
+    interval: 86400
+  GoogleCN (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvR29vZ2xlQ04ubGlzdA
+    path: ./providers/GoogleCN_domain.yaml
+    interval: 86400
+  SteamCN (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9TdGVhbUNOLmxpc3Q
+    path: ./providers/SteamCN_domain.yaml
+    interval: 86400
+  Bing (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQmluZy5saXN0
+    path: ./providers/Bing_domain.yaml
+    interval: 86400
+  OneDrive (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvT25lRHJpdmUubGlzdA
+    path: ./providers/OneDrive_domain.yaml
+    interval: 86400
+  Microsoft (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvTWljcm9zb2Z0Lmxpc3Q
+    path: ./providers/Microsoft_domain.yaml
+    interval: 86400
+  Apple (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQXBwbGUubGlzdA
+    path: ./providers/Apple_domain.yaml
+    interval: 86400
+  Apple (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQXBwbGUubGlzdA
+    path: ./providers/Apple_ipcidr.yaml
+    interval: 86400
+  Telegram (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvVGVsZWdyYW0ubGlzdA
+    path: ./providers/Telegram_domain.yaml
+    interval: 86400
+  Telegram (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvVGVsZWdyYW0ubGlzdA
+    path: ./providers/Telegram_ipcidr.yaml
+    interval: 86400
+  AI (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9BSS5saXN0
+    path: ./providers/AI_domain.yaml
+    interval: 86400
+  OpenAi (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9PcGVuQWkubGlzdA
+    path: ./providers/OpenAi_domain.yaml
+    interval: 86400
+  NetEaseMusic (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9OZXRFYXNlTXVzaWMubGlzdA
+    path: ./providers/NetEaseMusic_domain.yaml
+    interval: 86400
+  NetEaseMusic (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9OZXRFYXNlTXVzaWMubGlzdA
+    path: ./providers/NetEaseMusic_ipcidr.yaml
+    interval: 86400
+  Epic (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9FcGljLmxpc3Q
+    path: ./providers/Epic_domain.yaml
+    interval: 86400
+  Origin (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9PcmlnaW4ubGlzdA
+    path: ./providers/Origin_domain.yaml
+    interval: 86400
+  Sony (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9Tb255Lmxpc3Q
+    path: ./providers/Sony_domain.yaml
+    interval: 86400
+  Steam (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9TdGVhbS5saXN0
+    path: ./providers/Steam_domain.yaml
+    interval: 86400
+  Nintendo (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9OaW50ZW5kby5saXN0
+    path: ./providers/Nintendo_domain.yaml
+    interval: 86400
+  YouTube (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9Zb3VUdWJlLmxpc3Q
+    path: ./providers/YouTube_domain.yaml
+    interval: 86400
+  Netflix (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9OZXRmbGl4Lmxpc3Q
+    path: ./providers/Netflix_domain.yaml
+    interval: 86400
+  Netflix (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9OZXRmbGl4Lmxpc3Q
+    path: ./providers/Netflix_ipcidr.yaml
+    interval: 86400
+  Bahamut (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9CYWhhbXV0Lmxpc3Q
+    path: ./providers/Bahamut_domain.yaml
+    interval: 86400
+  BilibiliHMT (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9CaWxpYmlsaUhNVC5saXN0
+    path: ./providers/BilibiliHMT_domain.yaml
+    interval: 86400
+  BilibiliHMT (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9CaWxpYmlsaUhNVC5saXN0
+    path: ./providers/BilibiliHMT_ipcidr.yaml
+    interval: 86400
+  Bilibili (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUnVsZXNldC9CaWxpYmlsaS5saXN0
+    path: ./providers/Bilibili_domain.yaml
+    interval: 86400
+  ChinaMedia (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQ2hpbmFNZWRpYS5saXN0
+    path: ./providers/ChinaMedia_domain.yaml
+    interval: 86400
+  ChinaMedia (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQ2hpbmFNZWRpYS5saXN0
+    path: ./providers/ChinaMedia_ipcidr.yaml
+    interval: 86400
+  ProxyMedia (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUHJveHlNZWRpYS5saXN0
+    path: ./providers/ProxyMedia_domain.yaml
+    interval: 86400
+  ProxyMedia (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUHJveHlNZWRpYS5saXN0
+    path: ./providers/ProxyMedia_ipcidr.yaml
+    interval: 86400
+  ProxyGFWlist (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUHJveHlHRldsaXN0Lmxpc3Q
+    path: ./providers/ProxyGFWlist_domain.yaml
+    interval: 86400
+  ProxyGFWlist (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvUHJveHlHRldsaXN0Lmxpc3Q
+    path: ./providers/ProxyGFWlist_ipcidr.yaml
+    interval: 86400
+  ChinaDomain (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQ2hpbmFEb21haW4ubGlzdA
+    path: ./providers/ChinaDomain_domain.yaml
+    interval: 86400
+  ChinaDomain (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQ2hpbmFEb21haW4ubGlzdA
+    path: ./providers/ChinaDomain_ipcidr.yaml
+    interval: 86400
+  ChinaCompanyIp (IP-CIDR):
+    type: http
+    behavior: ipcidr
+    url: https://api.wcc.best/getruleset?type=4&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvQ2hpbmFDb21wYW55SXAubGlzdA
+    path: ./providers/ChinaCompanyIp_ipcidr.yaml
+    interval: 86400
+  Download (Domain):
+    type: http
+    behavior: domain
+    url: https://api.wcc.best/getruleset?type=3&url=aHR0cHM6Ly9yYXcuZ2l0aHVidXNlcmNvbnRlbnQuY29tL0FDTDRTU1IvQUNMNFNTUi9tYXN0ZXIvQ2xhc2gvRG93bmxvYWQubGlzdA
+    path: ./providers/Download_domain.yaml
+    interval: 86400
 rules:
-  - RULE-SET,CustomDirect,CN直连
-  - RULE-SET,CustomProxy,GW代理
-  - RULE-SET,LocalAreaNetwork,🎯 全球直连
-  - RULE-SET,AWAvenueAds,🛑 广告拦截
-  - RULE-SET,UnBan,🎯 全球直连
-  - RULE-SET,BanAD,🛑 广告拦截
-  - RULE-SET,BanProgramAD,🍃 应用净化
-  - RULE-SET,GoogleFCM,📢 谷歌FCM
-  - RULE-SET,GoogleCN,🎯 全球直连
-  - RULE-SET,SteamCN,🎯 全球直连
-  - RULE-SET,Bing,Ⓜ️ 微软Bing
-  - RULE-SET,OneDrive,Ⓜ️ 微软云盘
-  - RULE-SET,Microsoft,Ⓜ️ 微软服务
-  - RULE-SET,Apple,🍎 苹果服务
-  - RULE-SET,Telegram,📲 电报消息
-  - RULE-SET,OpenAi,💬 OpenAi
-  - RULE-SET,NetEaseMusic,🎶 网易音乐
-  - RULE-SET,Epic,🎮 游戏平台
-  - RULE-SET,Origin,🎮 游戏平台
-  - RULE-SET,Sony,🎮 游戏平台
-  - RULE-SET,Steam,🎮 游戏平台
-  - RULE-SET,Nintendo,🎮 游戏平台
-  - RULE-SET,YouTube,📹 油管视频
-  - RULE-SET,Netflix,🎥 奈飞视频
-  - RULE-SET,Bahamut,📺 巴哈姆特
-  - RULE-SET,BilibiliHMT,📺 哔哩哔哩
-  - RULE-SET,Bilibili,📺 哔哩哔哩
-  - RULE-SET,ChinaMedia,🌏 国内媒体
-  - RULE-SET,ProxyMedia,🌍 国外媒体
-  - RULE-SET,ProxyGFWlist,🚀 节点选择
-  - RULE-SET,ChinaIp,🎯 全球直连
-  - RULE-SET,ChinaDomain,🎯 全球直连
-  - RULE-SET,ChinaCompanyIp,🎯 全球直连
-  - RULE-SET,Download,🎯 全球直连
-  - GEOIP,LAN,🎯 全球直连
-  - GEOIP,CN,🎯 全球直连
-  - MATCH,🐟 漏网之鱼
+- RULE-SET,CustomDirect,CN直连
+- RULE-SET,CustomProxy,GW代理
+- RULE-SET,AWAvenueAds,🛑 广告拦截
+- RULE-SET,LocalAreaNetwork (Domain),🎯 全球直连
+- RULE-SET,LocalAreaNetwork (IP-CIDR),🎯 全球直连,no-resolve
+- RULE-SET,UnBan (Domain),🎯 全球直连
+- DOMAIN-KEYWORD,admarvel,🛑 广告拦截
+- DOMAIN-KEYWORD,admaster,🛑 广告拦截
+- DOMAIN-KEYWORD,adsage,🛑 广告拦截
+- DOMAIN-KEYWORD,adsensor,🛑 广告拦截
+- DOMAIN-KEYWORD,adsmogo,🛑 广告拦截
+- DOMAIN-KEYWORD,adsrvmedia,🛑 广告拦截
+- DOMAIN-KEYWORD,adsserving,🛑 广告拦截
+- DOMAIN-KEYWORD,adsystem,🛑 广告拦截
+- DOMAIN-KEYWORD,adwords,🛑 广告拦截
+- DOMAIN-KEYWORD,applovin,🛑 广告拦截
+- DOMAIN-KEYWORD,appsflyer,🛑 广告拦截
+- DOMAIN-KEYWORD,domob,🛑 广告拦截
+- DOMAIN-KEYWORD,duomeng,🛑 广告拦截
+- DOMAIN-KEYWORD,dwtrack,🛑 广告拦截
+- DOMAIN-KEYWORD,guanggao,🛑 广告拦截
+- DOMAIN-KEYWORD,omgmta,🛑 广告拦截
+- DOMAIN-KEYWORD,omniture,🛑 广告拦截
+- DOMAIN-KEYWORD,openx,🛑 广告拦截
+- DOMAIN-KEYWORD,partnerad,🛑 广告拦截
+- DOMAIN-KEYWORD,pingfore,🛑 广告拦截
+- DOMAIN-KEYWORD,socdm,🛑 广告拦截
+- DOMAIN-KEYWORD,supersonicads,🛑 广告拦截
+- DOMAIN-KEYWORD,wlmonitor,🛑 广告拦截
+- DOMAIN-KEYWORD,zjtoolbar,🛑 广告拦截
+- RULE-SET,BanAD (Domain),🛑 广告拦截
+- DOMAIN-KEYWORD,omgmtaw,🍃 应用净化
+- RULE-SET,BanProgramAD (Domain),🍃 应用净化
+- RULE-SET,BanProgramAD (IP-CIDR),🍃 应用净化,no-resolve
+- RULE-SET,GoogleFCM (Domain),📢 谷歌FCM
+- RULE-SET,GoogleFCM (IP-CIDR),📢 谷歌FCM,no-resolve
+- RULE-SET,GoogleCN (Domain),🎯 全球直连
+- RULE-SET,SteamCN (Domain),🎯 全球直连
+- RULE-SET,Bing (Domain),Ⓜ️ 微软Bing
+- DOMAIN-KEYWORD,1drv,Ⓜ️ 微软云盘
+- DOMAIN-KEYWORD,onedrive,Ⓜ️ 微软云盘
+- DOMAIN-KEYWORD,skydrive,Ⓜ️ 微软云盘
+- RULE-SET,OneDrive (Domain),Ⓜ️ 微软云盘
+- DOMAIN-KEYWORD,1drv,Ⓜ️ 微软服务
+- DOMAIN-KEYWORD,microsoft,Ⓜ️ 微软服务
+- RULE-SET,Microsoft (Domain),Ⓜ️ 微软服务
+- RULE-SET,Apple (Domain),🍎 苹果服务
+- RULE-SET,Apple (IP-CIDR),🍎 苹果服务,no-resolve
+- RULE-SET,Telegram (Domain),📲 电报消息
+- RULE-SET,Telegram (IP-CIDR),📲 电报消息,no-resolve
+- DOMAIN-KEYWORD,anthropic,💬 Ai平台
+- DOMAIN-KEYWORD,claude,💬 Ai平台
+- DOMAIN-KEYWORD,openai,💬 Ai平台
+- RULE-SET,AI (Domain),💬 Ai平台
+- DOMAIN-KEYWORD,openai,💬 Ai平台
+- RULE-SET,OpenAi (Domain),💬 Ai平台
+- RULE-SET,NetEaseMusic (Domain),🎶 网易音乐
+- RULE-SET,NetEaseMusic (IP-CIDR),🎶 网易音乐,no-resolve
+- RULE-SET,Epic (Domain),🎮 游戏平台
+- RULE-SET,Origin (Domain),🎮 游戏平台
+- RULE-SET,Sony (Domain),🎮 游戏平台
+- RULE-SET,Steam (Domain),🎮 游戏平台
+- RULE-SET,Nintendo (Domain),🎮 游戏平台
+- DOMAIN-KEYWORD,youtube,📹 油管视频
+- RULE-SET,YouTube (Domain),📹 油管视频
+- DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,🎥 奈飞视频
+- DOMAIN-KEYWORD,dualstack.apiproxy-,🎥 奈飞视频
+- DOMAIN-KEYWORD,netflixdnstest,🎥 奈飞视频
+- RULE-SET,Netflix (Domain),🎥 奈飞视频
+- RULE-SET,Netflix (IP-CIDR),🎥 奈飞视频,no-resolve
+- RULE-SET,Bahamut (Domain),📺 巴哈姆特
+- RULE-SET,BilibiliHMT (Domain),📺 哔哩哔哩
+- RULE-SET,BilibiliHMT (IP-CIDR),📺 哔哩哔哩,no-resolve
+- RULE-SET,Bilibili (Domain),📺 哔哩哔哩
+- RULE-SET,ChinaMedia (Domain),🌏 国内媒体
+- RULE-SET,ChinaMedia (IP-CIDR),🌏 国内媒体,no-resolve
+- DOMAIN-KEYWORD,anthropic,🌍 国外媒体
+- DOMAIN-KEYWORD,claude,🌍 国外媒体
+- DOMAIN-KEYWORD,openai,🌍 国外媒体
+- DOMAIN-KEYWORD,abematv.akamaized.net,🌍 国外媒体
+- DOMAIN-KEYWORD,avoddashs,🌍 国外媒体
+- DOMAIN-KEYWORD,bbcfmt,🌍 国外媒体
+- DOMAIN-KEYWORD,uk-live,🌍 国外媒体
+- DOMAIN-KEYWORD,voddazn,🌍 国外媒体
+- DOMAIN-KEYWORD,hbogoasia,🌍 国外媒体
+- DOMAIN-KEYWORD,jooxweb-api,🌍 国外媒体
+- DOMAIN-KEYWORD,japonx,🌍 国外媒体
+- DOMAIN-KEYWORD,japronx,🌍 国外媒体
+- DOMAIN-KEYWORD,nowtv100,🌍 国外媒体
+- DOMAIN-KEYWORD,rthklive,🌍 国外媒体
+- DOMAIN-KEYWORD,apiproxy-device-prod-nlb-,🌍 国外媒体
+- DOMAIN-KEYWORD,dualstack.apiproxy-,🌍 国外媒体
+- DOMAIN-KEYWORD,netflixdnstest,🌍 国外媒体
+- DOMAIN-KEYWORD,nivod,🌍 国外媒体
+- DOMAIN-KEYWORD,olevod,🌍 国外媒体
+- DOMAIN-KEYWORD,openai,🌍 国外媒体
+- DOMAIN-KEYWORD,-spotify-,🌍 国外媒体
+- DOMAIN-KEYWORD,spotify.com,🌍 国外媒体
+- DOMAIN-KEYWORD,tiktokcdn,🌍 国外媒体
+- DOMAIN-KEYWORD,ttvnw,🌍 国外媒体
+- DOMAIN-KEYWORD,youtube,🌍 国外媒体
+- RULE-SET,ProxyMedia (Domain),🌍 国外媒体
+- RULE-SET,ProxyMedia (IP-CIDR),🌍 国外媒体,no-resolve
+- DOMAIN-KEYWORD,1e100,🚀 节点选择
+- DOMAIN-KEYWORD,abema,🚀 节点选择
+- DOMAIN-KEYWORD,appledaily,🚀 节点选择
+- DOMAIN-KEYWORD,avtb,🚀 节点选择
+- DOMAIN-KEYWORD,beetalk,🚀 节点选择
+- DOMAIN-KEYWORD,blogspot,🚀 节点选择
+- DOMAIN-KEYWORD,dropbox,🚀 节点选择
+- DOMAIN-KEYWORD,facebook,🚀 节点选择
+- DOMAIN-KEYWORD,fbcdn,🚀 节点选择
+- DOMAIN-KEYWORD,github,🚀 节点选择
+- DOMAIN-KEYWORD,gmail,🚀 节点选择
+- DOMAIN-KEYWORD,google,🚀 节点选择
+- DOMAIN-KEYWORD,instagram,🚀 节点选择
+- DOMAIN-KEYWORD,porn,🚀 节点选择
+- DOMAIN-KEYWORD,sci-hub,🚀 节点选择
+- DOMAIN-KEYWORD,spotify,🚀 节点选择
+- DOMAIN-KEYWORD,telegram,🚀 节点选择
+- DOMAIN-KEYWORD,twitter,🚀 节点选择
+- DOMAIN-KEYWORD,whatsapp,🚀 节点选择
+- DOMAIN-KEYWORD,youtube,🚀 节点选择
+- DOMAIN-KEYWORD,uk-live,🚀 节点选择
+- DOMAIN-KEYWORD,1drv,🚀 节点选择
+- DOMAIN-KEYWORD,onedrive,🚀 节点选择
+- DOMAIN-KEYWORD,skydrive,🚀 节点选择
+- DOMAIN-KEYWORD,porn,🚀 节点选择
+- DOMAIN-KEYWORD,ttvnw,🚀 节点选择
+- RULE-SET,ProxyGFWlist (Domain),🚀 节点选择
+- RULE-SET,ProxyGFWlist (IP-CIDR),🚀 节点选择,no-resolve
+- DOMAIN-KEYWORD,360buy,🎯 全球直连
+- DOMAIN-KEYWORD,alicdn,🎯 全球直连
+- DOMAIN-KEYWORD,alimama,🎯 全球直连
+- DOMAIN-KEYWORD,alipay,🎯 全球直连
+- DOMAIN-KEYWORD,appzapp,🎯 全球直连
+- DOMAIN-KEYWORD,baidupcs,🎯 全球直连
+- DOMAIN-KEYWORD,bilibili,🎯 全球直连
+- DOMAIN-KEYWORD,ccgslb,🎯 全球直连
+- DOMAIN-KEYWORD,chinacache,🎯 全球直连
+- DOMAIN-KEYWORD,duobao,🎯 全球直连
+- DOMAIN-KEYWORD,jdpay,🎯 全球直连
+- DOMAIN-KEYWORD,moke,🎯 全球直连
+- DOMAIN-KEYWORD,qhimg,🎯 全球直连
+- DOMAIN-KEYWORD,vpimg,🎯 全球直连
+- DOMAIN-KEYWORD,xiami,🎯 全球直连
+- DOMAIN-KEYWORD,xiaomi,🎯 全球直连
+- RULE-SET,ChinaDomain (Domain),🎯 全球直连
+- RULE-SET,ChinaDomain (IP-CIDR),🎯 全球直连,no-resolve
+- RULE-SET,ChinaCompanyIp (IP-CIDR),🎯 全球直连,no-resolve
+- DOMAIN-KEYWORD,aria2,🎯 全球直连
+- RULE-SET,Download (Domain),🎯 全球直连
+- GEOIP,CN,🎯 全球直连
+- MATCH,🐟 漏网之鱼
