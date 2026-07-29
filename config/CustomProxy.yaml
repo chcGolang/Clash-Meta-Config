@@ -1,6 +1,6 @@
 payload:
   # 自定义代理
-  - DOMAIN-SUFFIX,v2rayssr.com
-  - DOMAIN-SUFFIX,alibabacloud.com
-  - DOMAIN-SUFFIX,gstatic.com
-  - DOMAIN-SUFFIX,googleapis.com
+  - '+.v2rayssr.com'
+  - '+.alibabacloud.com'
+  - '+.gstatic.com'
+  - '+.googleapis.com'
