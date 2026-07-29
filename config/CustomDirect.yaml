@@ -1,15 +1,15 @@
 payload:
-  # 自定义直连
-  - DOMAIN-SUFFIX,audiences.me
-  - DOMAIN-SUFFIX,cinefiles.info
-  - DOMAIN-SUFFIX,m-team.io
-  - DOMAIN-SUFFIX,m-team.cc
-  - DOMAIN-SUFFIX,caihc.site
-  - DOMAIN-SUFFIX,caihc.top
-  - DOMAIN-SUFFIX,test-ipv6.com
-  - DOMAIN-SUFFIX,speedtest.net
-  - DOMAIN-SUFFIX,08240315.xyz
-  - DOMAIN-SUFFIX,zyhxjh.com
-  - DOMAIN-SUFFIX,docip.net
-  - DOMAIN-SUFFIX,ihuan.me
-  - DOMAIN-SUFFIX,chcdev.top
+  #自定义直连
+  - 'audiences.me'
+  - 'cinefiles.info'
+  - 'm-team.io'
+  - 'm-team.cc'
+  - 'caihc.site'
+  - 'caihc.top'
+  - 'test-ipv6.com'
+  - 'speedtest.net'
+  - '08240315.xyz'
+  - 'zyhxjh.com'
+  - 'docip.net'
+  - 'ihuan.me'
+  - 'chcdev.top'
