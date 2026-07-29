@@ -2,7 +2,7 @@ name: 自动更新 ACL4SSR 规则
 
 on:
   schedule:
-    - cron: '0 20 * * *'   # 每天 UTC 20:00（北京时间凌晨 4 点）跑一次，可自行调整
+    - cron: '0 2 * * *'   # 每天 UTC 02:00（北京时间上午 10 点）跑一次，可自行调整
   workflow_dispatch: {}     # 也支持手动点击运行
 
 permissions:
