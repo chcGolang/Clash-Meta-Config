@@ -1,15 +1,14 @@
 payload:
-  #自定义直连
-  - 'audiences.me'
-  - 'cinefiles.info'
-  - 'm-team.io'
-  - 'm-team.cc'
-  - 'caihc.site'
-  - 'caihc.top'
-  - 'test-ipv6.com'
-  - 'speedtest.net'
-  - '08240315.xyz'
-  - 'zyhxjh.com'
-  - 'docip.net'
-  - 'ihuan.me'
-  - 'chcdev.top'
+  - audiences.me
+  - cinefiles.info
+  - m-team.io
+  - m-team.cc
+  - caihc.site
+  - caihc.top
+  - test-ipv6.com
+  - speedtest.net
+  - 08240315.xyz
+  - zyhxjh.com
+  - docip.net
+  - ihuan.me
+  - chcdev.top
