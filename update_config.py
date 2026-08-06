@@ -21,7 +21,7 @@ import requests
 import yaml
 
 # ========== 按需修改这几行 ==========
-SUBCONVERTER_HOST = "https://sub-convert-22v.pages.dev"          # 你的 subconverter 后端 https://api.wcc.best
+SUBCONVERTER_HOST = "https://sub.276879.xyz"          # 你的 subconverter 后端 https://api.wcc.best
 ACL4SSR_INI = "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full.ini"
 # 这里的 url 只是给 subconverter 用来跑规则生成逻辑的占位节点，
 # 规则/rule-providers 的生成跟节点内容无关，随便给一个能被正常解析的订阅/节点即可。
