@@ -10,7 +10,7 @@ rule-providers:
     behavior: domain
     format: yaml
     proxy: 🚀 节点选择
-    interval: 86400
+    interval: 300
 
   CustomProxy:
     type: http
@@ -19,7 +19,7 @@ rule-providers:
     behavior: domain
     format: yaml
     proxy: 🚀 节点选择
-    interval: 86400
+    interval: 300
 
   # 这个也不是 ACL4SSR 官方模板的东西，是单独引入的第三方去广告规则，
   # 同样不能靠 subconverter 同步，一起放这里手动维护
