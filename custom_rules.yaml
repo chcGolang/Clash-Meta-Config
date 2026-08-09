@@ -25,7 +25,7 @@ rule-providers:
   # 同样不能靠 subconverter 同步，一起放这里手动维护
   AWAvenueAds:
     type: http
-    behavior: classical
+    behavior: domain
     format: yaml
     path: ./chc/AWAvenue-Ads-Rule-Clash.yaml
     url: https://raw.githubusercontent.com/TG-Twilight/AWAvenue-Ads-Rule/main/Filters/AWAvenue-Ads-Rule-Clash.yaml
