@@ -3,19 +3,19 @@
 # 这个文件里的内容永远手动维护，脚本只负责把它拼接到最终结果的最前面。
 
 rule-providers:
-  CustomDirect:
-    type: http
-    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomDirect.yaml?v=1
-    path: ./chc/CustomDirect.yaml
-    behavior: domain
-    format: yaml
-    proxy: 🚀 节点选择
-    interval: 300
-
   CustomProxy:
     type: http
     url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomProxy.yaml
     path: ./chc/CustomProxy.yaml
+    behavior: domain
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 300
+    
+  CustomDirect:
+    type: http
+    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomDirect.yaml
+    path: ./chc/CustomDirect.yaml
     behavior: domain
     format: yaml
     proxy: 🚀 节点选择
