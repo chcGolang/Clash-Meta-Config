@@ -4,3 +4,4 @@ payload:
   - '+.alibabacloud.com'
   - '+.gstatic.com'
   - '+.googleapis.com'
+  - '_acme-challenge.server.276879.xyz'
