@@ -3,6 +3,14 @@
 # 这个文件里的内容永远手动维护，脚本只负责把它拼接到最终结果的最前面。
 
 rule-providers:
+  CustomWarp:
+    type: http
+    url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/refs/heads/main/config/Warp.yaml
+    path: ./chc/CustomProxy.yaml
+    behavior: domain
+    format: yaml
+    proxy: 🚀 节点选择
+    interval: 300
   CustomProxy:
     type: http
     url: https://raw.githubusercontent.com/chcGolang/Clash-Meta-Config/main/config/CustomProxy.yaml
