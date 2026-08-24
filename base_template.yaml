@@ -50,3 +50,8 @@ proxy-groups:
     proxies:
       - 🚀 节点选择
       - DIRECT
+      
+  - name: WARP
+    type: select
+    use:
+      - WARP
