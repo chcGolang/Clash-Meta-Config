@@ -9,7 +9,6 @@ rule-providers:
     path: ./chc/CustomWarp.yaml
     behavior: domain
     format: yaml
-    proxy: 🚀 节点选择
     interval: 300
   CustomProxy:
     type: http
@@ -40,6 +39,7 @@ rule-providers:
     interval: 86400
 
 rules:
+  - RULE-SET,CustomWarp,WARP代理
   - RULE-SET,CustomDirect,CN直连
   - RULE-SET,CustomProxy,GW代理
   - RULE-SET,AWAvenueAds,🛑 全球拦截
