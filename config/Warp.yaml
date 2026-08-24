@@ -1,1 +1,8 @@
-
+payload:
+  - '+.ai.google.dev'
+  - '+.aistudio.google.com'
+  - '+.bard.google.com'
+  - '+.gemini.google.com'
+  - '+.generativelanguage.googleapis.com'
+  - '+.notebooklm.google'
+  - '+.makersuite.google.com'
