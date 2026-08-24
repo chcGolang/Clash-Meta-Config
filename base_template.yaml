@@ -51,7 +51,7 @@ proxy-groups:
       - 🚀 节点选择
       - DIRECT
       
-  - name: WARP
+  - name: WARP代理
     type: select
     use:
       - WARP
