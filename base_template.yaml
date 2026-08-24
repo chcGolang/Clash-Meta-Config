@@ -8,6 +8,15 @@ proxy-providers:
       enable: true
       url: https://www.gstatic.com/generate_204
       interval: 1800
+  WARP:
+    type: http
+    path: ./chc/providers/warp.yaml
+    url: http://192.168.43.68:35334/clash/proxy-providers-warp.yaml
+    interval: 86400
+    health-check:
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 1800
 
 proxy-groups:
   - name: 🚀 节点选择
