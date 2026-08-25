@@ -6,3 +6,4 @@ payload:
   - '+.googleapis.com'
   - '_acme-challenge.server.276879.xyz'
   - '+.opencode.ai'
+  - '+.googletagmanager.com'
